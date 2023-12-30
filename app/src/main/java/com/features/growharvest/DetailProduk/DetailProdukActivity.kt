@@ -76,19 +76,27 @@ class DetailProdukActivity : AppCompatActivity() {
         }
     }
 
-    private fun tambahItemKeKeranjang(produk: Produk?){
-        //Memakai Singleton sebagai cara untuk mengirim data ke keranjang
+    private fun tambahItemKeKeranjang(produk: Produk?) {
         val jumlahPesan = txtKuantitas.text.toString().toIntOrNull() ?: 0
+
         if (jumlahPesan > 0) {
-            val item = KeranjangManager.KeranjangItem(produk, jumlahPesan)
-            KeranjangManager.tambahItem(produk, jumlahPesan)
-            Toast.makeText(this, "Produk ditambahkan ke keranjang", Toast.LENGTH_SHORT).show()
-            val intent = Intent(this, KeranjangActivity::class.java)
-            intent.putExtra("id_produk", produk?.id_produk)
-            startActivity(intent)
+            // Check if the quantity does not exceed the available stock
+            if (produk != null && jumlahPesan <= produk.stok_produk) {
+                val item = KeranjangManager.KeranjangItem(produk, jumlahPesan)
+                KeranjangManager.tambahItem(produk, jumlahPesan)
+                Toast.makeText(this, "Produk ditambahkan ke keranjang", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this, KeranjangActivity::class.java)
+                intent.putExtra("id_produk", produk.id_produk)
+                startActivity(intent)
+            } else {
+                // Show notification if the quantity exceeds the available stock
+                Toast.makeText(this, "Jumlah pesanan melebihi stok produk", Toast.LENGTH_SHORT).show()
+            }
         } else {
+            // Show notification for invalid quantity
             Toast.makeText(this, "Masukkan jumlah yang valid", Toast.LENGTH_SHORT).show()
         }
     }
+
 
 }

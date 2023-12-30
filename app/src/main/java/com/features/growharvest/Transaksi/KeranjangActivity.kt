@@ -132,6 +132,7 @@ class KeranjangActivity : AppCompatActivity() {
                 recyclerView: RecyclerView,
                 viewHolder: RecyclerView.ViewHolder,
                 target: RecyclerView.ViewHolder
+
             ): Boolean {
                 return false
             }
@@ -139,16 +140,23 @@ class KeranjangActivity : AppCompatActivity() {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 // Panggil method removeItem dari adapter
                 keranjangAdapter.removeItem(viewHolder.adapterPosition)
+                keranjangAdapter.clearKeranjang()
+                KeranjangManager.clearDaftarBelanja()
+                keranjangAdapter.notifyDataSetChanged()
+                txtGrandTotal.text = "0"
             }
         }
         ItemTouchHelper(simpleItemTouchCallback)
     }
 
     private fun clearKeranjang() {
+        keranjangAdapter.clearKeranjang()
         KeranjangManager.clearDaftarBelanja()
         keranjangAdapter.notifyDataSetChanged()
-        txtGrandTotal.text = "0" // Set ulang grand total ke 0
+        txtGrandTotal.text = "0"
+
     }
+
 
     private fun getUserIdFromSharedPreferences(): String {
 
