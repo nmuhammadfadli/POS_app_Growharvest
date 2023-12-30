@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Transaksi.RiwayatTransaksi">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="111dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="111dp"
+        android:id="@+id/textRiwayat"
+        android:textColor="@color/greenForProductName"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:text="Riwayat Transaksi"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/ttlPenjualan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Omset : Rp 174000"
+        android:textColor="@color/greenForProductName"
+        android:textSize="17sp"
+        android:textStyle=""
+        app:layout_constraintEnd_toEndOf="@+id/textRiwayat"
+        app:layout_constraintStart_toStartOf="@+id/textRiwayat"
+        app:layout_constraintTop_toBottomOf="@+id/textRiwayat" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
+        android:layout_height="620dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:background="@color/white"
+        app:cardBackgroundColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ttlPenjualan">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_riwayat"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
